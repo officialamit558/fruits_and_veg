@@ -1,5 +1,5 @@
 import streamlit as st
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 
 #Tensorflow Model Prediction
@@ -10,6 +10,7 @@ def model_prediction(test_image):
     input_arr = np.array([input_arr]) #convert single image to batch
     predictions = model.predict(input_arr)
     return np.argmax(predictions) #return index of max element
+
 
 # Side Bar
 st.sidebar.title("Dashboard")
@@ -37,7 +38,7 @@ elif (app_mode == "About Project"):
 # Prediction
 elif(app_mode=="Prediction"):
     st.header("Model Prediction")
-    test_image = st.file_uploader("Choose an Image:")
+    test_image = st.camera_input('Take Photo') or st.file_uploader("Choose an Image:")
     if(st.button("Show Image")):
         st.image(test_image,width=4,use_column_width=True)
     #Predict button
